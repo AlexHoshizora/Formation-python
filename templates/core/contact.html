@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Contact – Formation Python{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8 text-center">
+                <p class="text-uppercase text-primary fw-semibold small mb-2">
+                    Contact
+                </p>
+                <h1 class="display-6 fw-bold mb-2">
+                    Une question sur la formation&nbsp;?
+                </h1>
+                <p class="text-muted mb-0">
+                    Laissez vos coordonnées et votre message, et vous recevrez une réponse directement par e‑mail.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4 p-md-5">
+                        <form
+                            action="mailto:alex.gdn25@gmail.com"
+                            method="post"
+                            enctype="text/plain"
+                        >
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="contact-nom" class="form-label small fw-semibold">Nom</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="contact-nom"
+                                        name="Nom"
+                                        required
+                                    >
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contact-prenom" class="form-label small fw-semibold">Prénom</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="contact-prenom"
+                                        name="Prénom"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contact-email" class="form-label small fw-semibold">Adresse e‑mail</label>
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="contact-email"
+                                    name="Email"
+                                    required
+                                >
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="contact-message" class="form-label small fw-semibold">Votre message</label>
+                                <textarea
+                                    class="form-control"
+                                    id="contact-message"
+                                    name="Message"
+                                    rows="5"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 w-md-auto">
+                                    Envoyer le message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,348 @@
+{% extends "base.html" %}
+
+{% block title %}Formation Python – Utiliser Python comme un développeur{% endblock %}
+
+{% block content %}
+<section class="hero hero-gradient">
+    <div class="container hero-inner">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <span class="badge-pill mb-3">
+                    Nouvelle formation · Utiliser Python comme un développeur
+                </span>
+                <h1 class="display-title mb-3">
+                    Apprenez à utiliser Python comme un développeur,<br>
+                    même si vous partez de zéro.
+                </h1>
+                <p class="lead mb-4">
+                    Vous en avez assez des tutos éparpillés qui ne vont jamais au bout ?  
+                    Cette formation structurée vous accompagne pas à pas, pour comprendre
+                    réellement Python et être capable d’écrire vos propres scripts et projets,
+                    sans dépendre de copier‑coller trouvés sur Internet.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mb-4 stack-mobile">
+                    <a href="/programme/" class="btn btn-primary btn-lg">
+                        Découvrir le programme complet
+                    </a>
+                    <a href="/paiement/" class="btn btn-outline-light btn-lg">
+                        Accéder au paiement sécurisé
+                    </a>
+                </div>
+                <div class="d-flex flex-wrap gap-4 small text-muted">
+                    <div>
+                        <strong class="d-block text-dark">Objectif</strong>
+                        Utiliser Python comme un développeur, en seulement quelques heures
+                        de pratique guidée.
+                    </div>
+                    <div>
+                        <strong class="d-block text-dark">Format</strong>
+                        Vidéos, exercices, projets guidés
+                    </div>
+                    <div>
+                        <strong class="d-block text-dark">Accès</strong>
+                        À vie, mises à jour incluses
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="position-relative">
+                    <img
+                        src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                        alt="Développeur travaillant sur du code Python"
+                        class="img-fluid hero-image"
+                    >
+                    <div
+                        class="position-absolute bottom-0 end-0 bg-white shadow-sm rounded-pill px-3 py-2 d-flex align-items-center gap-2"
+                        style="margin: 0.75rem;"
+                    >
+                        <img
+                            src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png"
+                            alt="Logo Python"
+                            style="height: 24px;"
+                        >
+                        <span class="small text-muted">Formation 100&nbsp;% Python&nbsp;3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="qualites" class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center g-5 mb-5">
+            <div class="col-lg-6">
+                <p class="text-uppercase text-primary fw-semibold small mb-2">
+                    Section 1 · Les forces de la formation
+                </p>
+                <h2 class="display-6 fw-bold mb-3">
+                    Pourquoi cette formation va vraiment vous faire progresser
+                </h2>
+                <p class="lead text-muted mb-4">
+                    Plutôt qu’une simple suite de vidéos, cette formation est conçue comme un parcours guidé
+                    pour vous amener d’un niveau débutant à une pratique sereine de Python, étape par étape.
+                </p>
+                <div class="d-flex flex-column gap-2 small text-muted">
+                    <div class="d-flex align-items-center">
+                        <span class="badge bg-primary rounded-pill me-2">&check;</span>
+                        <span>Comprendre ce que vous faites, pas recopier du code au hasard</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="badge bg-primary rounded-pill me-2">&check;</span>
+                        <span>Progresser avec un fil rouge clair du début à la fin</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="badge bg-primary rounded-pill me-2">&check;</span>
+                        <span>Apprendre sur des exemples et projets proches du réel</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-lg">
+                        <img
+                            src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                            alt="Écran d’ordinateur affichant du code Python"
+                            class="w-100 h-100 object-fit-cover"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pédagogie / Structure / Pratique -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 rounded-4">
+                    <div class="card-body">
+                        <h3 class="h6 text-uppercase text-primary mb-2">Pédagogie</h3>
+                        <h4 class="h5 mb-3">Explications claires, sans jargon</h4>
+                        <ul class="small mb-0">
+                            <li>Chaque notion est expliquée avec des mots simples et des analogies concrètes</li>
+                            <li>Vous voyez immédiatement à quoi sert ce que vous apprenez</li>
+                            <li>Des vidéos courtes, orientées vers un objectif précis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 rounded-4">
+                    <div class="card-body">
+                        <h3 class="h6 text-uppercase text-primary mb-2">Structure</h3>
+                        <h4 class="h5 mb-3">Un parcours guidé, pas à pas</h4>
+                        <ul class="small mb-0">
+                            <li>Une progression logique, sans sauts de niveau brusques</li>
+                            <li>Des rappels réguliers pour ancrer les notions importantes</li>
+                            <li>Des projets guidés pour relier toutes les pièces entre elles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 rounded-4">
+                    <div class="card-body">
+                        <h3 class="h6 text-uppercase text-primary mb-2">Pratique</h3>
+                        <h4 class="h5 mb-3">Apprendre en faisant, pas en regardant</h4>
+                        <ul class="small mb-0">
+                            <li>Des exercices corrigés pour valider chaque étape</li>
+                            <li>Des exemples proches de situations réelles (scripts, automatisations…)</li>
+                            <li>Une feuille de route claire pour continuer après la formation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Petit “parcours” en 3 étapes -->
+        <div class="border-top pt-4">
+            <h3 class="h6 text-uppercase text-muted mb-3">
+                Concrètement, comment se déroule une leçon&nbsp;?
+            </h3>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 rounded-4 shadow-sm">
+                        <div class="card-body">
+                            <div class="badge bg-primary rounded-pill mb-2">Étape 1</div>
+                            <h4 class="h6 mb-2">Vous regardez une vidéo courte</h4>
+                            <p class="small text-muted mb-0">
+                                Une notion ciblée, expliquée simplement, avec des exemples concrets que vous pouvez reproduire.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 rounded-4 shadow-sm">
+                        <div class="card-body">
+                            <div class="badge bg-primary rounded-pill mb-2">Étape 2</div>
+                            <h4 class="h6 mb-2">Vous passez à la pratique</h4>
+                            <p class="small text-muted mb-0">
+                                Vous codez par vous‑même sur un exercice guidé, puis vous comparez avec la correction détaillée.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 rounded-4 shadow-sm">
+                        <div class="card-body">
+                            <div class="badge bg-primary rounded-pill mb-2">Étape 3</div>
+                            <h4 class="h6 mb-2">Vous consolidez avec un mini‑projet</h4>
+                            <p class="small text-muted mb-0">
+                                Vous réutilisez ce que vous avez appris dans un petit projet concret, proche d’un cas réel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="pour-qui" class="bg-white py-5">
+    <div class="container">
+        <div class="row align-items-center g-4 mb-4">
+            <div class="col-md-8">
+                <p class="text-uppercase text-primary fw-semibold small mb-2">
+                    Section 2 · À qui s’adresse cette formation ?
+                </p>
+                <h2 class="display-6 fw-bold mb-2">Cette formation est faite pour vous si…</h2>
+                <p class="text-muted mb-0">
+                    Que vous partiez de zéro complet ou que vous ayez déjà quelques notions,
+                    l’objectif est de vous amener à un niveau où vous êtes à l’aise avec Python
+                    et capable de travailler sur vos propres projets, sans être bloqué à chaque étape.
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <span class="badge rounded-pill bg-primary text-white">
+                    Débutants &amp; faux-débutants bienvenus
+                </span>
+            </div>
+        </div>
+
+        <!-- “Tabs” visuels pour les deux profils -->
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="badge rounded-pill bg-primary text-white">
+                Débutant complet
+            </span>
+            <span class="badge rounded-pill bg-outline-primary border text-primary">
+                Vous avez déjà un peu touché à Python
+            </span>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0 rounded-4">
+                    <div class="card-body">
+                        <h3 class="h6 text-uppercase text-primary mb-2">Profil 1</h3>
+                        <h4 class="h5 mb-2">Vous partez vraiment de zéro</h4>
+                        <p class="small text-muted">
+                            Vous n’avez jamais codé, ou seulement suivi quelques vidéos sans
+                            jamais aller au bout. Vous voulez enfin comprendre, pas seulement
+                            reproduire ce que l’on vous montre.
+                        </p>
+                        <ul class="small mb-0">
+                            <li>Aucun prérequis technique n’est nécessaire</li>
+                            <li>Les notions sont expliquées pas à pas, sans jargon</li>
+                            <li>Vous progressez grâce à des exercices concrets et corrigés</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0 rounded-4">
+                    <div class="card-body">
+                        <h3 class="h6 text-uppercase text-primary mb-2">Profil 2</h3>
+                        <h4 class="h5 mb-2">Vous “bidouillez” déjà un peu Python</h4>
+                        <p class="small text-muted">
+                            Vous avez déjà écrit quelques scripts ou suivi des tutos, mais vous avez
+                            l’impression de manquer de bases solides et de ne pas vraiment maîtriser
+                            ce que vous faites.
+                        </p>
+                        <ul class="small mb-0">
+                            <li>Vous remettez à plat les fondamentaux une bonne fois pour toutes</li>
+                            <li>Vous comprenez enfin la logique derrière le code que vous tapez</li>
+                            <li>Vous prenez des réflexes de vrai développeur Python, même si vous débutez</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="temoignages" class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4 align-items-center mb-3">
+            <div class="col-lg-6">
+                <p class="text-uppercase text-primary fw-semibold small mb-2">
+                    Section 3 · Résultats attendus
+                </p>
+                <h2 class="display-6 fw-bold">Ils en parleront mieux que moi</h2>
+                <p class="text-muted mb-3">
+                    Les premiers retours d’élèves viendront se placer ici. En attendant, voici le type
+                    de transformation que cette formation vise à apporter.
+                </p>
+                <div class="d-flex flex-wrap gap-3 small text-muted">
+                    <div class="d-flex align-items-center">
+                        <span class="badge bg-primary rounded-pill me-2">+ confiance</span>
+                        <span>Vous savez où vous allez et comment continuer à progresser.</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="badge bg-primary rounded-pill me-2">+ autonomie</span>
+                        <span>Vous êtes capable de débloquer un bug sans tout casser.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card h-100 shadow-lg border-0 rounded-4">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="d-flex align-items-center mb-4">
+                            <div
+                                class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-3"
+                                style="width: 56px; height: 56px;"
+                            >
+                                <span class="fw-bold">A</span>
+                            </div>
+                            <div>
+                                <div class="fw-semibold">Exemple d’élève en reconversion</div>
+                                <div class="small text-muted">Avant / Après la formation</div>
+                            </div>
+                        </div>
+                        <p class="mb-3 fst-italic">
+                            «&nbsp;Avant cette formation, je suivais des tutos YouTube sans jamais aller au bout.
+                            Je tapait du code sans vraiment comprendre. Aujourd’hui, je suis capable de
+                            lire et d’écrire du Python propre, et surtout de débugger quand quelque chose
+                            ne fonctionne pas.&nbsp;»
+                        </p>
+                        <p class="small text-muted mb-0">
+                            — Exemple de témoignage d’élève en reconversion (remplacé dès que
+                            vos premiers participants auront partagé leur retour)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-md-8">
+                <h2 class="h3 mb-2">Vous voulez investir sérieusement dans vos bases Python&nbsp;?</h2>
+                <p class="text-muted mb-0">
+                    Cette formation a été pensée comme un accompagnement complet : une progression
+                    logique, des explications claires, des exercices corrigés et des projets concrets.
+                    Vous avancez à votre rythme, avec la certitude de construire des bases solides
+                    sur lesquelles vous pourrez vous appuyer pendant des années.
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="/paiement/" class="btn btn-primary btn-lg">
+                    Rejoindre la formation
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

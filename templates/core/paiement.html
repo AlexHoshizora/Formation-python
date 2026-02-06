@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Paiement – Formation Python{% endblock %}
+
+{% block content %}
+<section class="py-5 hero hero-gradient">
+    <div class="container hero-inner">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-lg rounded-4">
+                    <div class="card-body p-4 p-md-5 text-center">
+                        <p class="text-uppercase text-primary fw-semibold small mb-2">
+                            Paiement sécurisé · Accès immédiat à la formation
+                        </p>
+                        <h1 class="h2 fw-bold mb-3">
+                            Finaliser votre inscription à la formation professionnelle Python
+                        </h1>
+                        <p class="text-muted mb-4">
+                            Un parcours guidé en 11 modules pour passer de “je bidouille un peu” à
+                            “je suis à l’aise pour écrire mes propres scripts utiles en Python”.
+                        </p>
+
+                        <div class="mb-4">
+                            <div class="text-uppercase small text-muted">Prix de la formation</div>
+                            <div class="display-2 fw-bold mb-1">
+                                199&nbsp;€
+                            </div>
+                            <div class="small text-muted">
+                                Prix unique, sans abonnement · Accès à vie, mises à jour incluses
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap justify-content-center gap-3 mb-4 stack-mobile">
+                            <a href="#" class="btn btn-primary btn-lg px-4 w-100 w-md-auto">
+                                Payer maintenant · 199&nbsp;€
+                            </a>
+                            <a href="/programme/" class="btn btn-outline-light btn-lg px-4 w-100 w-md-auto">
+                                Revoir le programme détaillé
+                            </a>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="row text-start text-muted g-4 mb-3">
+                            <div class="col-md-6">
+                                <h2 class="h5 mb-2">Ce que vous obtenez</h2>
+                                <ul class="mb-0">
+                                    <li>Accès complet aux 11 modules de la formation, dès maintenant</li>
+                                    <li>Vidéos, explications écrites, exercices corrigés et mini‑projets</li>
+                                    <li>Accès illimité dans le temps&nbsp;: vous avancez à votre rythme</li>
+                                    <li>Mises à jour futures de la formation incluses, sans surcoût</li>
+                                    <li>Feuille de route claire pour continuer après la formation</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="h5 mb-2">Paiement & sécurité</h2>
+                                <ul class="mb-0">
+                                    <li>Paiement géré par une solution reconnue (Stripe, PayPal…)</li>
+                                    <li>Vos coordonnées bancaires ne transitent pas par ce site</li>
+                                    <li>Facture envoyée automatiquement par e‑mail après le paiement</li>
+                                    <li>Accès envoyé en quelques minutes une fois le paiement validé</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <p class="small text-muted mb-0">
+                            Une question avant de rejoindre la formation&nbsp;? Utilisez la page de contact
+                            ou répondez à l’e‑mail de confirmation pour obtenir une réponse rapide.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
