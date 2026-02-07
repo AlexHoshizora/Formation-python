@@ -13,7 +13,7 @@
                             Paiement sécurisé · Accès immédiat à la formation
                         </p>
                         <h1 class="h2 fw-bold mb-3">
-                            Finaliser votre inscription à la formation professionnelle Python
+                            Rejoindre la formation “Utiliser Python comme un développeur”
                         </h1>
                         <p class="text-muted mb-4">
                             Un parcours guidé en 11 modules pour passer de “je bidouille un peu” à
@@ -30,47 +30,219 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-wrap justify-content-center gap-3 mb-4 stack-mobile">
-                            <a href="#" class="btn btn-primary btn-lg px-4 w-100 w-md-auto">
-                                Payer maintenant · 199&nbsp;€
-                            </a>
-                            <a href="/programme/" class="btn btn-outline-light btn-lg px-4 w-100 w-md-auto">
-                                Revoir le programme détaillé
-                            </a>
-                        </div>
-
-                        <hr class="my-4">
-
-                        <div class="row text-start text-muted g-4 mb-3">
-                            <div class="col-md-6">
-                                <h2 class="h5 mb-2">Ce que vous obtenez</h2>
-                                <ul class="mb-0">
-                                    <li>Accès complet aux 11 modules de la formation, dès maintenant</li>
-                                    <li>Vidéos, explications écrites, exercices corrigés et mini‑projets</li>
-                                    <li>Accès illimité dans le temps&nbsp;: vous avancez à votre rythme</li>
-                                    <li>Mises à jour futures de la formation incluses, sans surcoût</li>
-                                    <li>Feuille de route claire pour continuer après la formation</li>
-                                </ul>
+                        {% if db_error %}
+                            <div class="alert alert-danger mt-4 mb-0 text-start">
+                                Une erreur technique empêche pour l’instant d’enregistrer votre inscription.
+                                Merci de réessayer un peu plus tard.
                             </div>
-                            <div class="col-md-6">
-                                <h2 class="h5 mb-2">Paiement & sécurité</h2>
-                                <ul class="mb-0">
-                                    <li>Paiement géré par une solution reconnue (Stripe, PayPal…)</li>
-                                    <li>Vos coordonnées bancaires ne transitent pas par ce site</li>
-                                    <li>Facture envoyée automatiquement par e‑mail après le paiement</li>
-                                    <li>Accès envoyé en quelques minutes une fois le paiement validé</li>
-                                </ul>
+                        {% elif success %}
+                            <div class="alert alert-success mt-4 mb-0 text-start">
+                                Votre demande d’inscription a bien été enregistrée. Vous recevrez un e-mail avec la suite
+                                des instructions.
                             </div>
-                        </div>
+                        {% else %}
+                            <hr class="my-4">
 
-                        <p class="small text-muted mb-0">
-                            Une question avant de rejoindre la formation&nbsp;? Utilisez la page de contact
-                            ou répondez à l’e‑mail de confirmation pour obtenir une réponse rapide.
-                        </p>
+                            <div class="row text-start text-muted g-4 mb-3">
+                                <div class="col-md-6">
+                                    <h2 class="h5 mb-2">Ce que vous obtenez</h2>
+                                    <ul class="mb-0">
+                                        <li>Accès complet aux 11 modules de la formation, dès maintenant</li>
+                                        <li>Vidéos, explications écrites, exercices corrigés et mini‑projets</li>
+                                        <li>Accès illimité dans le temps&nbsp;: vous avancez à votre rythme</li>
+                                        <li>Mises à jour futures de la formation incluses, sans surcoût</li>
+                                        <li>Feuille de route claire pour continuer après la formation</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 class="h5 mb-2">Paiement &amp; sécurité</h2>
+                                    <ul class="mb-0">
+                                        <li>Paiement géré par une solution reconnue (Stripe, PayPal…)</li>
+                                        <li>Vos coordonnées bancaires ne transitent pas par ce site</li>
+                                        <li>Facture envoyée automatiquement par e‑mail après le paiement</li>
+                                        <li>Accès envoyé en quelques minutes une fois le paiement validé</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <p class="small text-muted mb-0">
+                                Une question avant de rejoindre la formation&nbsp;? Utilisez la page de contact
+                                pour obtenir une réponse rapide.
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8 text-center">
+                <p class="text-uppercase text-primary fw-semibold small mb-2">
+                    Étape suivante
+                </p>
+                <h2 class="h3 fw-bold mb-2">
+                    Renseignez vos informations pour finaliser l’inscription
+                </h2>
+                <p class="text-muted mb-0">
+                    Ces informations permettent de créer votre accès à la formation et de traiter votre paiement
+                    dans un environnement sécurisé.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4 p-md-5">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="billing-lastname" class="form-label small fw-semibold">Nom</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="billing-lastname"
+                                        name="last_name"
+                                        placeholder="Votre nom"
+                                        required
+                                    >
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="billing-firstname" class="form-label small fw-semibold">Prénom</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="billing-firstname"
+                                        name="first_name"
+                                        placeholder="Votre prénom"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="billing-email" class="form-label small fw-semibold">Adresse e‑mail</label>
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        id="billing-email"
+                                        name="email"
+                                        placeholder="vous@example.com"
+                                        required
+                                    >
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="billing-password" class="form-label small fw-semibold">
+                                        Mot de passe pour votre espace formation
+                                    </label>
+                                    <input
+                                        type="password"
+                                        class="form-control"
+                                        id="billing-password"
+                                        name="password"
+                                        placeholder="Choisissez un mot de passe"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h3 class="h6 text-uppercase text-muted mb-3">
+                                Informations de carte bancaire
+                            </h3>
+
+                            <div class="mb-3">
+                                <label for="card-holder" class="form-label small fw-semibold">Nom du titulaire</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="card-holder"
+                                    name="card_holder"
+                                    placeholder="Nom affiché sur la carte"
+                                    required
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="card-number" class="form-label small fw-semibold">Numéro de carte</label>
+                                <input
+                                    type="text"
+                                    inputmode="numeric"
+                                    pattern="[0-9 ]*"
+                                    class="form-control"
+                                    id="card-number"
+                                    name="card_number"
+                                    placeholder="1234 5678 9012 3456"
+                                    maxlength="19"
+                                    required
+                                >
+                            </div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label for="card-expiry" class="form-label small fw-semibold">
+                                        Date d’expiration (MM/AA)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="card-expiry"
+                                        name="card_expiry"
+                                        placeholder="08/27"
+                                        required
+                                    >
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="card-cvc" class="form-label small fw-semibold">
+                                        Cryptogramme visuel (CVC)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        inputmode="numeric"
+                                        pattern="[0-9]*"
+                                        class="form-control"
+                                        id="card-cvc"
+                                        name="card_cvc"
+                                        placeholder="123"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 w-md-auto">
+                                    Payer maintenant · 199&nbsp;€
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        const cardInput = document.getElementById('card-number');
+        if (!cardInput) return;
+
+        cardInput.addEventListener('input', function () {
+            // On enlève tout ce qui n’est pas un chiffre
+            let value = this.value.replace(/\D/g, '');
+            // On limite à 16 chiffres
+            value = value.slice(0, 16);
+            // On regroupe par blocs de 4
+            const groups = value.match(/.{1,4}/g);
+            this.value = groups ? groups.join(' ') : '';
+        });
+    })();
+</script>
 {% endblock %}

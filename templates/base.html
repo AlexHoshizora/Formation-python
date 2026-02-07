@@ -157,6 +157,41 @@
             color: #ffffff;
         }
 
+        /* Animations au défilement */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition:
+                opacity 0.7s ease-out,
+                transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Variantes directionnelles / zoom */
+        .reveal-on-scroll[data-reveal="fade-up"] {
+            transform: translateY(32px);
+        }
+        .reveal-on-scroll[data-reveal="fade-down"] {
+            transform: translateY(-32px);
+        }
+        .reveal-on-scroll[data-reveal="fade-left"] {
+            transform: translateX(-40px);
+        }
+        .reveal-on-scroll[data-reveal="fade-right"] {
+            transform: translateX(40px);
+        }
+        .reveal-on-scroll[data-reveal="zoom"] {
+            transform: scale(0.95);
+        }
+        .reveal-on-scroll.is-visible[data-reveal],
+        .reveal-on-scroll.is-visible[data-reveal="zoom"] {
+            transform: none;
+        }
+
         /* Footer */
         .site-footer {
             background-color: #0f172a;
@@ -244,6 +279,7 @@
     </style>
 </head>
 <body>
+{% if request.resolver_match.url_name != 'dashboard' %}
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">
@@ -278,6 +314,25 @@
                         Contact
                     </a>
                 </li>
+                {% if request.session.enrollment_first_name %}
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"
+                            href="{% url 'dashboard' %}"
+                        >
+                            Bonjour, {{ request.session.enrollment_first_name }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {% if request.resolver_match.url_name == 'connexion' %}active{% endif %}"
+                            href="{% url 'connexion' %}"
+                        >
+                            Se connecter
+                        </a>
+                    </li>
+                {% endif %}
                 <li class="nav-item ms-lg-3">
                     <a class="btn btn-sm btn-primary px-3" href="{% url 'paiement' %}">
                         Rejoindre la formation
@@ -287,6 +342,7 @@
         </div>
     </div>
 </nav>
+{% endif %}
 
 <main>
     {% block content %}{% endblock %}
@@ -295,40 +351,74 @@
 <footer class="site-footer">
     <div class="container">
         <div class="row gy-4">
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="footer-logo mb-2">
-                    Formation Python · Utiliser Python comme un développeur
+                    AG Formation – apprendre le langage Python
                 </div>
                 <p class="mb-0 small text-muted">
-                    Un parcours structuré, pensé pour les débutants motivés qui veulent
-                    enfin être à l’aise avec Python et leurs propres scripts.
+                    Une formation complète pour acquérir des bases solides en Python&nbsp;3
+                    et apprendre à écrire des scripts utiles, clairs et maintenables.
                 </p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="footer-title">Navigation</div>
                 <ul class="list-unstyled mb-0 small">
                     <li><a href="{% url 'home' %}">Accueil</a></li>
                     <li><a href="{% url 'programme' %}">Programme de la formation</a></li>
                     <li><a href="{% url 'paiement' %}">Rejoindre la formation</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
             </div>
-            <div class="col-md-4">
-                <div class="footer-title">Informations</div>
+            <div class="col-md-3">
+                <div class="footer-title">Contact</div>
+                <ul class="list-unstyled mb-0 small">
+                    <li>Responsable&nbsp;: Alex Gueydan</li>
+                    <li>E‑mail&nbsp;: <a href="mailto:alex.gdn25@gmail.com">alex.gdn25@gmail.com</a></li>
+                    <li>Réponse sous quelques jours ouvrés.</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-title">Ressources</div>
                 <ul class="list-unstyled mb-0 small">
                     <li>Accès en ligne, 24h/24 · 7j/7</li>
                     <li>Mises à jour incluses sans surcoût</li>
-                    <li>Contact&nbsp;: <a href="mailto:contact@example.com">contact@example.com</a></li>
+                    <li>Compatible ordinateur, tablette et mobile</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mt-4">
-            <span>&copy; {% now "Y" %} Formation Python. Tous droits réservés.</span>
-            <span class="small">Site de démonstration pédagogique (Django &amp; Bootstrap).</span>
+            <span>&copy; {% now "Y" %} Alex Gueydan – AG Formation. Tous droits réservés.</span>
+            <span class="small">Site réalisé avec Django &amp; Bootstrap.</span>
         </div>
     </div>
 </footer>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Animation d’apparition au scroll
+    (function () {
+        const elements = document.querySelectorAll('.reveal-on-scroll');
+        if (!('IntersectionObserver' in window) || elements.length === 0) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const delay = el.dataset.revealDelay || 0;
+                    setTimeout(() => {
+                        el.classList.add('is-visible');
+                    }, parseInt(delay, 10));
+                    observer.unobserve(el);
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        elements.forEach(el => observer.observe(el));
+    })();
+</script>
 </body>
 </html>

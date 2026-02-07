@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}Espace de formation – {{ enrollment.first_name }}{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center g-4 mb-4">
+            <div class="col-md-8">
+                <p class="text-uppercase text-primary fw-semibold small mb-2">
+                    Espace de formation
+                </p>
+                <h1 class="h3 fw-bold mb-2">
+                    Bonjour {{ enrollment.first_name }}, ravi de vous retrouver.
+                </h1>
+                <p class="text-muted mb-0">
+                    Retrouvez ici un aperçu de votre progression et reprenez la formation là où vous vous êtes arrêté.
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end text-center">
+                <a href="{% url 'programme' %}" class="btn btn-primary btn-lg">
+                    Voir le programme complet
+                </a>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-4">
+                    <div class="card-body">
+                        <h2 class="h6 text-uppercase text-primary mb-2">Votre avancement</h2>
+                        <p class="mb-1">
+                            Dernier module validé&nbsp;:
+                            {% if last_module > 0 %}
+                                <strong>Module {{ last_module }}</strong>
+                            {% else %}
+                                <strong>Aucun pour le moment</strong>
+                            {% endif %}
+                        </p>
+                        <p class="mb-3">
+                            Progression estimée&nbsp;:
+                            <strong>{{ progress_percent }}&nbsp;%</strong>
+                        </p>
+                        <div class="progress" style="height: 10px;">
+                            <div
+                                class="progress-bar bg-primary"
+                                role="progressbar"
+                                style="width: 0%;"
+                                data-progress="{{ progress_percent }}"
+                                aria-valuenow="{{ progress_percent }}"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-4">
+                    <div class="card-body">
+                        <h2 class="h6 text-uppercase text-primary mb-2">Reprendre la formation</h2>
+                        {% if last_module > 0 %}
+                            <p class="text-muted mb-3">
+                                Vous avez validé jusqu’au module <strong>{{ last_module }}</strong>. Vous pouvez
+                                continuer à partir du module suivant ou revoir un module précédent si besoin.
+                            </p>
+                        {% else %}
+                            <p class="text-muted mb-3">
+                                Vous n’avez pas encore commencé la formation. Nous vous recommandons de démarrer
+                                au module <strong>0</strong>, puis d’avancer pas à pas.
+                            </p>
+                        {% endif %}
+                        <a href="{% url 'programme' %}" class="btn btn-outline-primary">
+                            Reprendre là où vous en étiez
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Liste des modules + sous-parties interactives -->
+        <div class="row g-4">
+            <div class="col-12">
+                <h2 class="h5 mb-3">Votre parcours module par module</h2>
+                <p class="text-muted mb-4">
+                    Cliquez sur un titre de sous‑partie pour y accéder (navigation à venir)&nbsp;:
+                </p>
+            </div>
+
+            {% for module in modules %}
+                <div class="col-12">
+                    <div class="card h-100 border-0 shadow-sm rounded-4">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <div class="small text-uppercase text-muted">Module</div>
+                                    <div class="fw-semibold">
+                                        Module {{ module.number }} – {{ module.title }}
+                                    </div>
+                                </div>
+                                {% if module.number <= last_module %}
+                                    <span class="badge bg-success-subtle text-success small">
+                                        Terminé
+                                    </span>
+                                {% elif module.number == last_module|add:1 %}
+                                    <span class="badge bg-warning-subtle text-warning small">
+                                        À suivre
+                                    </span>
+                                {% endif %}
+                            </div>
+
+                            <ul class="list-unstyled mt-3 mb-0">
+                                {% for section in module.sections %}
+                                    <li class="mb-1">
+                                        <a href="{{ section.url }}"
+                                           class="d-inline-flex align-items-center small text-decoration-none text-primary">
+                                            <span class="me-2">•</span>
+                                            <span>{{ section.title }}</span>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.progress-bar[data-progress]').forEach(function (bar) {
+        var value = parseFloat(bar.getAttribute('data-progress'));
+        if (!isNaN(value)) {
+            bar.style.width = value + '%';
+        }
+    });
+});
+</script>
+{% endblock %}

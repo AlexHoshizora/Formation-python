@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}Module 0 – Installer Python 3{% endblock %}
+
+{% block content %}
+<section class="bg-light" style="padding-top: 0; padding-bottom: 3rem;">
+    <div class="d-flex align-items-start">
+        <!-- Sidebar fixe à gauche, avec scroll indépendant -->
+        <aside
+            class="me-4 d-none d-lg-block"
+            style="
+                min-width: 310px;
+                max-width: 310px;
+                position: sticky;
+                top: 0;
+                max-height: 100vh;
+                overflow-y: auto;
+                background-color: #f8fafc;
+                border-right: 1px solid #e2e8f0;
+            "
+        >
+            <div style="padding: 1rem 1.25rem 2rem 1.25rem;">
+                <h2 class="h6 text-uppercase text-primary mb-3">Parcours de la formation</h2>
+                <ul class="list-unstyled mb-0">
+                    {% for module in modules %}
+                        <li class="mb-3">
+                            <div class="fw-semibold small mb-1">
+                                Module {{ module.number }} – {{ module.title }}
+                            </div>
+                            <ul class="list-unstyled ps-2 mb-0">
+                                {% for section in module.sections %}
+                                    <li class="mb-1">
+                                        <a href="{{ section.url }}"
+                                           class="small text-decoration-none {% if module.number == current_module and section.slug == current_section %}fw-semibold text-primary{% else %}text-muted{% endif %}">
+                                            {% if module.number == current_module and section.slug == current_section %}› {% else %}• {% endif %}{{ section.title }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Contenu principal, plus large, centré dans un container -->
+        <div class="flex-grow-1">
+            <div class="container-xxl mt-3 mt-lg-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm rounded-4 mb-4">
+                            <div class="card-body p-4 p-md-5">
+                                <p class="text-uppercase text-primary fw-semibold small mb-2">
+                                    Module 0 · Découvrir Python et installer tout ce qu’il faut
+                                </p>
+                                <h1 class="h3 fw-bold mb-3">
+                                    Installer Python&nbsp;3 correctement sur votre ordinateur
+                                </h1>
+                                <p class="text-muted mb-3">
+                                    Avant d’écrire une seule ligne de code, il est essentiel que votre environnement soit propre et fiable.
+                                    Dans cette leçon, vous allez&nbsp;:
+                                </p>
+                                <ul class="text-muted mb-4">
+                                    <li>vérifier si Python est déjà présent sur votre machine,</li>
+                                    <li>installer une version récente de Python&nbsp;3 si nécessaire,</li>
+                                    <li>vous assurer que la commande <code>python</code> ou <code>python3</code> fonctionne où que vous soyez.</li>
+                                </ul>
+                                <p class="text-muted mb-4">
+                                    L’idée n’est pas seulement de “cliquer sur suivant”, mais de comprendre ce que vous faites pour que,
+                                    le jour où quelque chose ne fonctionne plus, vous sachiez où regarder et quoi vérifier.
+                                </p>
+
+                                <h2 class="h5 fw-semibold mb-2">1. Vérifier si Python est déjà installé</h2>
+                                <p class="text-muted">
+                                    De nombreuses machines ont déjà une version de Python installée, surtout sous macOS et Linux.
+                                    Avant d’ajouter une nouvelle installation, on commence donc par faire un état des lieux.
+                                </p>
+                                <ul class="text-muted mb-3">
+                                    <li>Ouvrez un <strong>Terminal</strong> (macOS / Linux) ou une <strong>Invite de commandes</strong> (Windows).</li>
+                                    <li>Tapez&nbsp;: <code>python --version</code> puis appuyez sur <code>Entrée</code>.</li>
+                                    <li>Si vous obtenez un message d’erreur ou une version en 2.x, essayez&nbsp;: <code>python3 --version</code>.</li>
+                                </ul>
+                                <p class="text-muted mb-4">
+                                    Si vous voyez une version commençant par <strong>3.</strong> (par exemple <code>Python 3.12.0</code>),
+                                    cela signifie que Python&nbsp;3 est déjà installé et accessible. Nous allons quand même le relancer
+                                    un peu plus loin pour vérifier que tout fonctionne bien.
+                                </p>
+
+                                <div class="alert alert-info small mb-4">
+                                    <strong>Si la commande n’est pas reconnue :</strong> ce n’est pas grave. Cela signifie simplement
+                                    que Python n’est pas encore installé, ou pas accessible depuis la ligne de commande.
+                                    Vous allez corriger cela dans la partie suivante.
+                                </div>
+
+                                <h2 class="h5 fw-semibold mb-2">2. Installer Python&nbsp;3 sur Windows</h2>
+                                <p class="text-muted">
+                                    Sur Windows, la méthode la plus simple et la plus fiable consiste à passer par le site officiel
+                                    de Python. Vous allez télécharger un installeur, le lancer, puis cocher une option importante
+                                    pour que Python soit accessible partout.
+                                </p>
+                                <ol class="text-muted mb-4">
+                                    <li>Ouvrez votre navigateur et allez sur <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a>.</li>
+                                    <li>Cliquez sur le gros bouton jaune qui propose la dernière version de <strong>Python 3</strong> pour Windows.</li>
+                                    <li>Une fois le fichier téléchargé, double‑cliquez dessus pour lancer l’installation.</li>
+                                    <li>
+                                        Sur l’écran d’accueil de l’installeur, cochez la case
+                                        <strong>“Add Python to PATH”</strong>. C’est ce qui permet de lancer Python
+                                        depuis n’importe quel dossier dans l’invite de commandes.
+                                    </li>
+                                    <li>Cliquez sur <strong>Install Now</strong> et laissez l’installation se terminer.</li>
+                                </ol>
+                                <p class="text-muted mb-4">
+                                    Une fois l’installation terminée, fermez l’installeur, rouvrez une nouvelle invite de commandes
+                                    et testez&nbsp;: <code>python --version</code>. Vous devriez maintenant voir apparaître une
+                                    version 3.x.
+                                </p>
+
+                                <h2 class="h5 fw-semibold mb-2">3. Installer Python&nbsp;3 sur macOS</h2>
+                                <p class="text-muted">
+                                    macOS fournit parfois une ancienne version de Python par défaut. Pour travailler sereinement,
+                                    vous allez installer une version récente de Python&nbsp;3 en parallèle, via un installeur officiel.
+                                </p>
+                                <ol class="text-muted mb-4">
+                                    <li>Ouvrez votre navigateur et rendez‑vous sur <a href="https://www.python.org/downloads/macos/" target="_blank">python.org/downloads/macos</a>.</li>
+                                    <li>Téléchargez le fichier d’installation correspondant à la dernière version de Python&nbsp;3.</li>
+                                    <li>Ouvrez le fichier <code>.pkg</code> téléchargé, puis suivez les étapes de l’installateur (continuer, accepter, installer…).</li>
+                                    <li>À la fin de l’installation, ouvrez l’application <strong>Terminal</strong> depuis votre dossier Applications.</li>
+                                    <li>Tapez <code>python3 --version</code> et vérifiez que vous voyez une version 3.x.</li>
+                                </ol>
+                                <p class="text-muted mb-4">
+                                    Sur macOS, il est courant d’utiliser la commande <code>python3</code> au lieu de <code>python</code>.
+                                    Dans la suite de la formation, quand vous verrez <code>python</code>, retenez que sur macOS
+                                    vous pouvez souvent remplacer par <code>python3</code>.
+                                </p>
+
+                                <h2 class="h5 fw-semibold mb-2">4. Vérifier concrètement que tout fonctionne</h2>
+                                <p class="text-muted">
+                                    Maintenant que Python est installé, l’objectif est de vérifier que vous pouvez lancer une
+                                    session interactive et exécuter un petit morceau de code. C’est votre “test de santé” Python.
+                                </p>
+                                <ul class="text-muted mb-4">
+                                    <li>Ouvrez votre terminal (macOS / Linux) ou votre invite de commandes (Windows).</li>
+                                    <li>
+                                        Tapez <code>python</code> (ou <code>python3</code> sur macOS si nécessaire) puis appuyez sur <code>Entrée</code>.
+                                        Vous devriez voir apparaître quelques lignes d’information, puis un prompt qui ressemble à <code>>></code>.
+                                    </li>
+                                    <li>
+                                        Tapez ensuite&nbsp;:
+                                        <code>print("Bonjour")</code>
+                                        puis validez. Si le mot <strong>Bonjour</strong> s’affiche sur la ligne suivante, c’est que
+                                        Python exécute bien votre code.
+                                    </li>
+                                    <li>
+                                        Pour quitter cette session interactive, tapez <code>exit()</code> puis <code>Entrée</code>
+                                        (ou utilisez le raccourci <code>Ctrl + Z</code> sous Windows, <code>Ctrl + D</code> sous macOS / Linux).
+                                    </li>
+                                </ul>
+                                <p class="text-muted mb-4">
+                                    Vous venez d’écrire et d’exécuter votre première instruction Python. Ce n’est pas encore un “programme”
+                                    au sens d’un fichier, mais c’est une étape importante&nbsp;: vous savez maintenant que Python répond
+                                    bien à ce que vous lui demandez.
+                                </p>
+
+                                <h2 class="h5 fw-semibold mb-2">5. Problèmes fréquents et pistes de résolution</h2>
+                                <p class="text-muted">
+                                    Si tout ne fonctionne pas du premier coup, ce n’est pas un échec, c’est l’occasion de comprendre
+                                    un peu mieux ce qui se passe. Voici les cas les plus courants et comment les traiter.
+                                </p>
+                                <ul class="text-muted mb-4">
+                                    <li>
+                                        <strong>“python n’est pas reconnu” sous Windows :</strong>
+                                        cela signifie que Windows ne sait pas où se trouve Python.
+                                        Réinstallez Python en vous assurant de cocher la case
+                                        <strong>Add Python to PATH</strong>, puis rouvrez une nouvelle invite de commandes
+                                        et réessayez.
+                                    </li>
+                                    <li>
+                                        <strong>Plusieurs versions de Python installées :</strong>
+                                        si <code>python</code> lance une version 2.x et <code>python3</code> une version 3.x,
+                                        utilisez systématiquement <code>python3</code> pour cette formation afin d’éviter les confusions.
+                                    </li>
+                                    <li>
+                                        <strong>Rien ne s’affiche après avoir tapé une commande :</strong>
+                                        vérifiez bien que vous avez appuyé sur <code>Entrée</code>, et que vous êtes dans un
+                                        terminal / une invite de commandes, pas dans une autre application.
+                                    </li>
+                                </ul>
+
+                                <div class="alert alert-success small mb-0">
+                                    Si vous êtes parvenu à ouvrir Python, à exécuter <code>print("Bonjour")</code> puis à quitter
+                                    proprement la session, cette étape est validée. Vous pouvez passer sereinement au point suivant&nbsp;:
+                                    installer et configurer votre éditeur de code pour travailler dans de bonnes conditions.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.progress-bar[data-progress]').forEach(function (bar) {
+        var value = parseFloat(bar.getAttribute('data-progress'));
+        if (!isNaN(value)) {
+            bar.style.width = value + '%';
+        }
+    });
+});
+</script>
+{% endblock %}
